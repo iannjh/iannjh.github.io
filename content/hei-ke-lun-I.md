@@ -623,7 +623,9 @@ this.motionZ -= zRatio * strength;
 
 我不明白卡姆姬先生为什么总是揪着`damageEntity`不放呢？文章将“motX/Y/Z /2”（摩擦）误为`damageEntity`内操作，已经和他接下来对`EntityHuman`类大脑骨折的论述截然相反！攻击方调用Entity#attackEntityFrom，根本不在damageEntity，他将空气摩擦值误认为是受害者的调用值，体现了其论证严谨性的缺失。
 
+```
 \begin{cases} motX = motX + \sin(yaw \pi /180) * 0.5i \ motY = motY + 0.1 \ motZ = motZ + \sin(yaw \pi /180) * 0.5i \end{cases}
+```
 
 这是典型的双sin，错误，原版`knockBack`应该为：
 ```

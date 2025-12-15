@@ -90,19 +90,7 @@ def outflow_constitution(
     return output_constitution - input_constitution
 ```
 
-这样以来，占有流出构成的玩家便取得了主动权，也就是说，他能更快获胜，但一般情况下被占有流出构成会被转化为软符号，而软符号本身不具备同硬符号那样的绝对优势，因此在软符号遭遇同一汇率下高于该软符号水平的软符号，就会遭遇压制，表达为：
-
-$$
-\frac{\text{相对符号增值} - \text{硬符号流出}}{\text{单一玩家符号总值}} = \text{单一玩家符号汇率}
-$$
-
-```
-def outflow_constitution(
-    output_constitution: float,
-    input_constitution: float
-) -> float:
-    return output_constitution - input_constitution
- ```
+这样以来，占有流出构成的玩家便取得了主动权，也就是说，他能更快获胜，但一般情况下被占有流出构成会被转化为软符号，而软符号本身不具备同硬符号那样的绝对优势，因此在软符号遭遇同一汇率下高于该软符号水平的软符号，就会遭遇压制。
  
 所谓替换流出，依赖于战斗机制逻辑中的更高替换原则，一旦条件触发，在硬直期内被击中的目标物只能受到比来源更高的伤害，因此，combos取决于玩家在被二次击中之后对方玩家是否符合游戏kb所支持的条件，例如，玩家在使用锋利II木剑和一般击退有极大区别，击退II木剑只会在打出伤害之后延长击退与硬直期，但先决条件必须是击退和伤害高于来源（即第一次击退的构成），否则击退和伤害都不会高于不同木剑。同样，一个锋利II木剑可以提高一次攻击时打出的伤害，但若是要在硬直期内实现伤害增益，先决条件必须是伤害高于来源，否则同样伤害的情况下，硬直期内的输出伤害也不会高于普通木剑。这就是综合不平衡原理的体现。
 
@@ -621,7 +609,7 @@ this.motionZ -= zRatio * strength;
 将motZ 减去 z / f1 \* f2
 如果motY大于0.4，则设为0.4(这就是原版击退100附魔也无法飞天只能击远的原因)。我们把该值称为VerticalLimit。
 
-我不明白卡姆姬先生为什么总是揪着`damageEntity`不放呢？文章将“motX/Y/Z /2”（摩擦）误为`damageEntity`内操作，已经和他接下来对`EntityHuman`类大脑骨折的论述截然相反！攻击方调用Entity#attackEntityFrom，根本不在damageEntity，他将空气摩擦值误认为是受害者的调用值，体现了其论证严谨性的缺失。
+我不明白卡姆姬先生为什么总是揪着`damageEntity`不放呢？文章将“motX/Y/Z /2”（摩擦）误为`damageEntity`内操作，已经和他接下来对`EntityHuman`类大脑骨折的论述截然相反！攻击方调`Entity#attackEntityFrom，根本不在damageEntity，他将空气摩擦值误认为是受害者的调用值，体现了其论证严谨性的缺失。
 
 ```
 \begin{cases} motX = motX + \sin(yaw \pi /180) * 0.5i \ motY = motY + 0.1 \ motZ = motZ + \sin(yaw \pi /180) * 0.5i \end{cases}
